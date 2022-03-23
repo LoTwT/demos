@@ -1,0 +1,29 @@
+{
+  "name": "mini-source-code",
+  "version": "0.0.0",
+  "private": true,
+  "description": "mini-source-code",
+  "main": "index.js",
+  "scripts": {
+    "test": "vitest",
+    "prettier": "prettier --write ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LoTwT/mini-source-code.git"
+  },
+  "keywords": [
+    "mini-source-code"
+  ],
+  "author": "LoTwT",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/LoTwT/mini-source-code/issues"
+  },
+  "homepage": "https://github.com/LoTwT/mini-source-code#readme",
+  "devDependencies": {
+    "prettier": "^2.6.0",
+    "unplugin-auto-import": "^0.6.6",
+    "vitest": "^0.7.10"
+  }
+}
