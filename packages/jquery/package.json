@@ -1,0 +1,24 @@
+{
+  "name": "@mini-source-code/jquery",
+  "version": "0.0.0",
+  "private": true,
+  "description": "@mini-source-code/jquery",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LoTwT/mini-source-code.git",
+    "directory": "packages/jquery"
+  },
+  "keywords": [
+    "mini-source-code"
+  ],
+  "author": "LoTwT",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/LoTwT/mini-source-code/issues"
+  },
+  "homepage": "https://github.com/LoTwT/mini-source-code#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}

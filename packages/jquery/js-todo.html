@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>todolist</title>
+  </head>
+  <body>
+    <h1>js-todo</h1>
+    <input type="text" id="input" />
+    <button id="btn">添加</button>
+    <ul id="ul"></ul>
+
+    <script>
+      document.querySelector("#btn").addEventListener(
+        "click",
+        () => {
+          const inputEl = document.querySelector("#input")
+          const li = document.createElement("li")
+
+          li.innerText = input.value
+          document.querySelector("#ul").appendChild(li)
+          input.value = ""
+        },
+        false,
+      )
+    </script>
+  </body>
+</html>

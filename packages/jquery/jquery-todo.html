@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>todolist</title>
+    <style>
+      .lightblue {
+        color: lightblue;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 id="title">jquery-todo</h1>
+    <input type="text" id="input" />
+    <button id="btn">添加</button>
+    <ul id="ul"></ul>
+
+    <script src="./jquery.js"></script>
+    <script>
+      // jquery
+      // $ 统一所有 api
+
+      $("#title").html("modified title by jquery").addClass("lightblue")
+
+      $("#btn").on("click", () => {
+        const val = $("#input").val()
+        $("#ul").append(`<li>${val}</li>`)
+
+        // 重置
+        $("#input").val("")
+      })
+    </script>
+  </body>
+</html>
