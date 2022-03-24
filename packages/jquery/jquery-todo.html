@@ -17,6 +17,10 @@
     <button id="btn">添加</button>
     <ul id="ul"></ul>
 
+    ---
+
+    <div id="response"></div>
+
     <script src="./jquery.js"></script>
     <script>
       // jquery
@@ -30,6 +34,21 @@
 
         // 重置
         $("#input").val("")
+      })
+
+      // xhr
+      $.get("http://localhost:24678/info", function (data) {
+        $("#response").append(`<div>xhr response: ${data.title}</div>`)
+      })
+
+      // fetch
+      $.fetch("http://localhost:24678/info", (data) => {
+        $("#response").append(`<div>fetch response: ${data.title}</div>`)
+      })
+
+      // jsonp
+      $.jsonp("http://localhost:24678/info", function (data) {
+        $("#response").append(`<div>jsonp response: ${data.title}</div>`)
       })
     </script>
   </body>

@@ -4,6 +4,10 @@
   "private": true,
   "description": "@mini-source-code/jquery",
   "main": "index.js",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "serve": "http-server"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/LoTwT/mini-source-code.git",
@@ -19,6 +23,7 @@
   },
   "homepage": "https://github.com/LoTwT/mini-source-code#readme",
   "devDependencies": {
+    "http-server": "^14.1.0",
     "nodemon": "^2.0.15"
   }
 }

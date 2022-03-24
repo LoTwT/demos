@@ -2,6 +2,42 @@ const $ = (window.$ = function (selector) {
   return new Jquery(selector)
 })
 
+// 使用 xhr 请求 ( 简版 )
+$.get = function (url, callback) {
+  const xhr = new XMLHttpRequest()
+  xhr.open("GET", url)
+  xhr.onload = function () {
+    if (xhr.status === 200) {
+      callback(JSON.parse(xhr.response))
+    }
+  }
+  xhr.send()
+}
+
+// 使用 fetch 请求 ( 简版 )
+$.fetch = function (url, callback) {
+  fetch(url)
+    .then((res) => res.json())
+    .then((res) => callback(res))
+}
+
+// jsonp
+$.jsonp = function (url, callback) {
+  // window.fn = ...
+  // <script src="url?callback=fn"></script>
+  // 返回：fn{data}
+
+  const callbackName = "JSONP_" + Math.random().toString().replace(".", "")
+  window[callbackName] = function (data) {
+    callback(data)
+    delete window[callbackName]
+  }
+
+  const script = document.createElement("script")
+  script.src = `${url}?callback=${callbackName}`
+  document.body.appendChild(script)
+}
+
 class Jquery {
   constructor(selector) {
     this.selector = selector
