@@ -1,8 +1,8 @@
 {
-  "name": "pkg-name",
+  "name": "demos",
   "version": "0.0.0",
   "packageManager": "pnpm@7.11.0",
-  "description": "pkg-name",
+  "description": "demos",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -39,15 +39,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/LoTwT/pkg-name.git"
+    "url": "git+https://github.com/LoTwT/demos.git"
   },
   "keywords": [],
   "author": "LoTwT <709937065@qq.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/LoTwT/pkg-name/issues"
+    "url": "https://github.com/LoTwT/demos/issues"
   },
-  "homepage": "https://github.com/LoTwT/pkg-name#readme",
+  "homepage": "https://github.com/LoTwT/demos#readme",
   "devDependencies": {
     "@types/node": "^18.7.16",
     "bumpp": "^8.2.1",

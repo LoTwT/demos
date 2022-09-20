@@ -36,6 +36,12 @@ importers:
       http-server: 14.1.1
       nodemon: 2.0.20
 
+  packages/ts-compiler-api:
+    specifiers:
+      typescript: ^4.8.3
+    devDependencies:
+      typescript: 4.8.3
+
 packages:
 
   /@antfu/ni/0.16.3:
