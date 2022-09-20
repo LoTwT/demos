@@ -1,29 +1,72 @@
 {
-  "name": "mini-source-code",
+  "name": "pkg-name",
   "version": "0.0.0",
-  "private": true,
-  "description": "mini-source-code",
-  "main": "index.js",
+  "packageManager": "pnpm@7.11.0",
+  "description": "pkg-name",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./dist/*",
+        "./dist/index.d.ts"
+      ]
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
   "scripts": {
+    "watch": "tsup --watch",
+    "build": "tsup",
+    "lint": "prettier -c .",
+    "prettier": "prettier --write .",
+    "typecheck": "tsc --noEmit",
     "test": "vitest",
-    "prettier": "prettier --write ."
+    "prepublishOnly": "pnpm build",
+    "release": "bumpp && npm publish",
+    "prepare": "simple-git-hooks",
+    "up": "taze latest -I"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/LoTwT/mini-source-code.git"
+    "url": "git+https://github.com/LoTwT/pkg-name.git"
   },
-  "keywords": [
-    "mini-source-code"
-  ],
-  "author": "LoTwT",
+  "keywords": [],
+  "author": "LoTwT <709937065@qq.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/LoTwT/mini-source-code/issues"
+    "url": "https://github.com/LoTwT/pkg-name/issues"
   },
-  "homepage": "https://github.com/LoTwT/mini-source-code#readme",
+  "homepage": "https://github.com/LoTwT/pkg-name#readme",
   "devDependencies": {
-    "prettier": "^2.6.0",
-    "unplugin-auto-import": "^0.6.6",
-    "vitest": "^0.7.10"
+    "@types/node": "^18.7.16",
+    "bumpp": "^8.2.1",
+    "lint-staged": "^13.0.3",
+    "pnpm": "^7.11.0",
+    "prettier": "^2.7.1",
+    "simple-git-hooks": "^2.8.0",
+    "taze": "^0.8.0",
+    "tsup": "^6.2.3",
+    "typescript": "^4.8.3",
+    "unplugin-auto-import": "^0.11.2",
+    "vitest": "^0.23.1"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm exec lint-staged"
+  },
+  "lint-staged": {
+    "*": [
+      "prettier --write --ignore-unknown"
+    ]
   }
 }
