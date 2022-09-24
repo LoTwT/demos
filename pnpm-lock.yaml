@@ -38,10 +38,15 @@ importers:
 
   packages/ts-compiler-api:
     specifiers:
+      '@types/lodash': ^4.14.185
       chalk: ^5.0.1
+      lodash: ^4.17.21
       ts-morph: ^16.0.0
       typescript: ^4.8.3
+    dependencies:
+      lodash: 4.17.21
     devDependencies:
+      '@types/lodash': 4.14.185
       chalk: 5.0.1
       ts-morph: 16.0.0
       typescript: 4.8.3
@@ -199,6 +204,10 @@ packages:
 
   /@types/chai/4.3.3:
     resolution: {integrity: sha512-hC7OMnszpxhZPduX+m+nrx+uFoLkWOMiR4oa/AZF3MuSETYTZmFfJAHqZEM8MVlvfG7BEUcgvtwoCTxBp6hm3g==}
+    dev: true
+
+  /@types/lodash/4.14.185:
+    resolution: {integrity: sha512-evMDG1bC4rgQg4ku9tKpuMh5iBNEwNa3tf9zRHdP1qlv+1WUg44xat4IxCE14gIpZRGUUWAx2VhItCZc25NfMA==}
     dev: true
 
   /@types/node/18.7.16:
@@ -1637,7 +1646,6 @@ packages:
 
   /lodash/4.17.21:
     resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
-    dev: true
 
   /log-update/4.0.0:
     resolution: {integrity: sha512-9fkkDevMefjg0mmzWFBW8YkFP91OrizzkW3diF7CpG+S2EYdy4+TVfGwz1zeF8x7hCx1ovSPTOE9Ngib74qqUg==}
