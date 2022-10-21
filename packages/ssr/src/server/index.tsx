@@ -3,7 +3,7 @@ import childProcess from "child_process"
 import { renderToString } from "react-dom/server"
 import path from "node:path"
 import router from "@/router"
-import { Route, Routes } from "react-router-dom"
+import { Route, Routes, matchRoutes, RouteObject } from "react-router-dom"
 import { StaticRouter } from "react-router-dom/server"
 import { Helmet } from "react-helmet"
 import { serverStore } from "@/store"
@@ -27,21 +27,43 @@ app.post("/api/getDemoData", (req, res) => {
 })
 
 app.get("*", (req, res) => {
-  const content = renderToString(
-    <Provider store={serverStore}>
-      <StaticRouter location={req.path}>
-        <Routes>
-          {router?.map((item, index) => {
-            return <Route {...item} key={index} />
-          })}
-        </Routes>
-      </StaticRouter>
-    </Provider>,
-  )
+  const routeMap = new Map<string, () => Promise<any>>() // path - loaddata map
 
-  const helmet = Helmet.renderStatic()
+  router.forEach((item) => {
+    if (item.path && item.loadData) {
+      routeMap.set(item.path, item.loadData(serverStore))
+    }
+  })
 
-  res.send(`
+  // 匹配当前路由的 routes
+  const matchedRoutes = matchRoutes(router as RouteObject[], req.path)
+
+  const promises: (() => Promise<any>)[] = []
+
+  matchedRoutes?.forEach((item) => {
+    if (routeMap.has(item.pathname)) {
+      promises.push(routeMap.get(item.pathname)!)
+    }
+  })
+
+  Promise.all(promises).then((data) => {
+    // 统一放到 state 里
+    // 编译需要渲染的 JSX，转成对应的 html string
+    const content = renderToString(
+      <Provider store={serverStore}>
+        <StaticRouter location={req.path}>
+          <Routes>
+            {router?.map((item, index) => {
+              return <Route {...item} key={index} />
+            })}
+          </Routes>
+        </StaticRouter>
+      </Provider>,
+    )
+
+    const helmet = Helmet.renderStatic()
+
+    res.send(`
 <html>
   <head>
     ${helmet.title.toString()}
@@ -49,10 +71,16 @@ app.get("*", (req, res) => {
   </head>
   <body>
     <div id="root">${content}</div>
+    <script>
+      window.context = {
+        state: ${JSON.stringify(serverStore.getState())}
+      }
+    </script>
     <script src="/index.js"></script>
   </body>
 </html> 
-`)
+  `)
+  })
 })
 
 app.listen(3000, () => {
