@@ -1,7 +1,18 @@
-import { FC } from "react"
+import { FC, useState, useEffect } from "react"
+import axios from "axios"
 
 const Demo: FC = (data) => {
-  return <div>这是一个demo页面</div>
+  const [content, setContent] = useState("")
+
+  useEffect(() => {
+    axios
+      .post("/api/getDemoData", { content: "这是一个 demo 页面" })
+      .then((res) => {
+        setContent(res.data?.data?.content)
+      })
+  }, [])
+
+  return <div>{content}</div>
 }
 
 export default Demo
