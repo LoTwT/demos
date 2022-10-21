@@ -1,15 +1,26 @@
 import express from "express"
 import childProcess from "child_process"
 import { renderToString } from "react-dom/server"
-import Home from "@/pages/Home"
 import path from "node:path"
+import router from "@/router"
+import { Route, Routes } from "react-router-dom"
+import { StaticRouter } from "react-router-dom/server"
 
 const app = express()
-const content = renderToString(<Home />)
 
 app.use(express.static(path.resolve(process.cwd(), "client_build")))
 
 app.get("*", (req, res) => {
+  const content = renderToString(
+    <StaticRouter location={req.path}>
+      <Routes>
+        {router?.map((item, index) => {
+          return <Route {...item} key={index} />
+        })}
+      </Routes>
+    </StaticRouter>,
+  )
+
   res.send(`
 <html>
   <body>
