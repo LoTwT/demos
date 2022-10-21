@@ -1,29 +1,38 @@
 import { useNavigate } from "react-router-dom"
+import { Fragment } from "react"
+import { Helmet } from "react-helmet"
 
 const Home = () => {
   const navigate = useNavigate()
 
   return (
-    <div>
-      <h1>hello-ssr</h1>
-      <button
-        onClick={(): void => {
-          alert("hello-ssr")
-        }}
-      >
-        alert
-      </button>
+    <Fragment>
+      <Helmet>
+        <title>简易的服务器渲染 —— Home</title>
+        <meta name="description" content="服务端渲染" />
+      </Helmet>
 
-      <a href="http://127.0.0.1:3000/demo">链接跳转</a>
+      <div>
+        <h1>hello-ssr</h1>
+        <button
+          onClick={(): void => {
+            alert("hello-ssr")
+          }}
+        >
+          alert
+        </button>
 
-      <span
-        onClick={(): void => {
-          navigate("/demo")
-        }}
-      >
-        路由跳转
-      </span>
-    </div>
+        <a href="http://127.0.0.1:3000/demo">链接跳转</a>
+
+        <span
+          onClick={(): void => {
+            navigate("/demo")
+          }}
+        >
+          路由跳转
+        </span>
+      </div>
+    </Fragment>
   )
 }
 
