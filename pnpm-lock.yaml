@@ -30,6 +30,12 @@ importers:
         specifier: ^5.2.2
         version: 5.2.2
 
+  packages/compile-basic:
+    devDependencies:
+      typescript:
+        specifier: ^5.2.2
+        version: 5.2.2
+
   packages/jquery:
     devDependencies:
       http-server:
