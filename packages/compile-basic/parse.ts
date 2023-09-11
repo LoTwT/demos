@@ -55,6 +55,5 @@ export function parse(str: string) {
   return root
 }
 
-const ast = parse("<div><p>Vue</p><p>Template</p></div>")
-
-console.log(JSON.stringify(ast, null, 2))
+// const ast = parse("<div><p>Vue</p><p>Template</p></div>")
+// console.log(JSON.stringify(ast, null, 2))
