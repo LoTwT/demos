@@ -145,4 +145,4 @@ export function tokenize(str: string) {
   return tokens
 }
 
-console.log(tokenize("<p>Vue</p>"))
+// console.log(tokenize("<p>Vue</p>"))
