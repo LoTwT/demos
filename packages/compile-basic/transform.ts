@@ -22,4 +22,37 @@ export function dump(node, indent = 0) {
   }
 }
 
-dump(parse("<div><p>Vue</p><p>Template</p></div>"))
+// dump(parse("<div><p>Vue</p><p>Template</p></div>"))
+
+export function traverseNode(ast) {
+  // 当前节点，ast 本身就是 Root 节点
+  const currentNode = ast
+  // 如果有子节点，则递归地调用 traverseNode 函数进行遍历
+  const children = currentNode.children
+
+  if (children) {
+    for (let i = 0; i < children.length; i++) {
+      traverseNode(children[i])
+    }
+  }
+}
+
+// 将 AST 中所有 p 标签转换为 h1 标签
+export function tagPToH1(ast) {
+  const currentNode = ast
+
+  // 对当前节点进行操作
+  if (currentNode.type === "Element" && currentNode.tag === "p") {
+    // 将所有 p 标签转换为 h1 标签
+    currentNode.tag = "h1"
+  }
+
+  // 如果有子节点，则递归地调用 TagPToH1 进行遍历
+  const children = currentNode.children
+
+  if (children) {
+    for (let i = 0; i < children.length; i++) {
+      tagPToH1(children[i])
+    }
+  }
+}
