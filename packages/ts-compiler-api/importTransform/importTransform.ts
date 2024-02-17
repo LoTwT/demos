@@ -55,8 +55,8 @@ for (const specifier of allSpecifiers) {
     const namedImports = target?.getNamedImports() ?? []
 
     // 替换为新的具名导入
-    const namedImportsReplacement = namedImports.map(
-      (i) => replacementMatch?.namedImportsReplacement(i.getText()),
+    const namedImportsReplacement = namedImports.map((i) =>
+      replacementMatch?.namedImportsReplacement(i.getText()),
     )
 
     // 移除原本的导入

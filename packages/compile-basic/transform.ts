@@ -10,8 +10,8 @@ export function dump(node, indent = 0) {
     node.type === "Root"
       ? ""
       : node.type === "Element"
-      ? node.tag
-      : node.content
+        ? node.tag
+        : node.content
 
   // 打印节点的类型和描述信息
   console.log(`${"-".repeat(indent)}${type}: ${desc}`)

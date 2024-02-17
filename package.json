@@ -1,41 +1,47 @@
 {
   "name": "demos",
   "version": "0.0.0",
-  "packageManager": "pnpm@8.7.4",
   "description": "demos",
-  "scripts": {
-    "lint": "prettier -c .",
-    "prettier": "prettier --write .",
-    "typecheck": "tsc --noEmit",
-    "prepare": "simple-git-hooks",
-    "up": "taze latest -I"
-  },
+  "type": "module",
+  "packageManager": "pnpm@8.15.3",
+  "author": "LoTwT <709937065@qq.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/LoTwT/demos#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/LoTwT/demos.git"
   },
-  "keywords": [],
-  "author": "LoTwT <709937065@qq.com>",
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/LoTwT/demos/issues"
   },
-  "homepage": "https://github.com/LoTwT/demos#readme",
+  "keywords": [],
+  "scripts": {
+    "lint": "eslint .",
+    "prepare": "simple-git-hooks",
+    "prettier": "prettier --write .",
+    "typecheck": "tsc --noEmit",
+    "up": "taze latest -I -f"
+  },
   "devDependencies": {
-    "@types/node": "^20.6.0",
-    "lint-staged": "^14.0.1",
-    "pnpm": "^8.7.4",
-    "prettier": "^3.0.3",
+    "@ayingott/eslint-config": "^0.7.9",
+    "@ayingott/prettier-config": "^0.1.6",
+    "@types/node": "^20.11.19",
+    "eslint": "8.56.0",
+    "lint-staged": "^15.2.2",
+    "pnpm": "^8.15.3",
+    "prettier": "^3.2.5",
     "simple-git-hooks": "^2.9.0",
-    "taze": "^0.11.2",
-    "typescript": "^5.2.2"
+    "taze": "^0.13.3",
+    "typescript": "^5.3.3"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm exec lint-staged"
   },
   "lint-staged": {
     "*": [
+      "eslint --fix",
       "prettier --write --ignore-unknown"
     ]
-  }
+  },
+  "prettier": "@ayingott/prettier-config"
 }
