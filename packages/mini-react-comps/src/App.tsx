@@ -1,33 +1,20 @@
-import { useState } from "react"
-import reactLogo from "./assets/react.svg"
-import viteLogo from "/vite.svg"
-import "./App.css"
+import { useEffect, useRef } from "react"
+import MiniCalendar, { type MiniCalendarRef } from "./components/mini-calendar"
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+  const miniCalendarRef = useRef<MiniCalendarRef>(null)
+
+  useEffect(() => {
+    console.log(miniCalendarRef.current?.getDate())
+
+    setTimeout(() => {
+      miniCalendarRef.current?.setDate(new Date(2024, 1, 18))
+    }, 3000)
+  }, [])
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank" rel="noreferrer">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <MiniCalendar ref={miniCalendarRef} />
     </>
   )
 }
