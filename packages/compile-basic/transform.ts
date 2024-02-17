@@ -56,3 +56,30 @@ export function tagPToH1(ast) {
     }
   }
 }
+
+function dumplicateTextNode(ast) {
+  const currentNode = ast
+
+  if (currentNode.type === "Element" && currentNode.tag === "p") {
+    currentNode.tag = "h1"
+  }
+
+  if (currentNode.type === "Text") {
+    currentNode.content = currentNode.content.repeat(2)
+  }
+
+  const children = currentNode.children
+  if (children) {
+    for (let i = 0; i < children.length; i++) {
+      dumplicateTextNode(children[i])
+    }
+  }
+}
+
+function transform(ast) {
+  dumplicateTextNode(ast)
+  console.log(dump(ast))
+}
+
+const ast = parse("<div><p>Vue</p><p>Template</p></div>")
+transform(ast)
