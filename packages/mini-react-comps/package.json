@@ -6,17 +6,21 @@
   "scripts": {
     "build": "tsc && vite build",
     "dev": "vite",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "up": "taze latest -I -f"
   },
   "dependencies": {
+    "dayjs": "^1.11.10",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "sass": "^1.71.0"
   },
   "devDependencies": {
-    "@types/react": "^18.2.55",
+    "@types/react": "^18.2.56",
     "@types/react-dom": "^18.2.19",
-    "@vitejs/plugin-react-swc": "^3.5.0",
-    "typescript": "^5.2.2",
-    "vite": "^5.1.0"
+    "@vitejs/plugin-react-swc": "^3.6.0",
+    "taze": "^0.13.3",
+    "typescript": "^5.3.3",
+    "vite": "^5.1.3"
   }
 }

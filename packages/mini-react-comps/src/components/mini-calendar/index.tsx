@@ -4,7 +4,7 @@ import {
   useImperativeHandle,
   useState,
 } from "react"
-import "./index.css"
+import styles from "./index.module.scss"
 
 const monthNames = [
   "一月",
@@ -67,7 +67,7 @@ const MiniCalendar: ForwardRefRenderFunction<
     const firstDay = firstDayOfMonth(date.getFullYear(), date.getMonth())
 
     for (let i = 0; i < firstDay; i++) {
-      days.push(<div key={`empty-${i}`} className="empty"></div>)
+      days.push(<div key={`empty-${i}`} className={styles.empty}></div>)
     }
 
     for (let i = 1; i <= daysCount; i++) {
@@ -81,7 +81,7 @@ const MiniCalendar: ForwardRefRenderFunction<
       days.push(
         <div
           key={i}
-          className={`day${isSelected ? " selected" : ""}`}
+          className={`${styles.day}${isSelected ? ` ${styles.selected}` : ""}`}
           onClick={clickHandler}
         >
           {i}
@@ -93,22 +93,22 @@ const MiniCalendar: ForwardRefRenderFunction<
   }
 
   return (
-    <div className="calendar">
-      <div className="header">
+    <div className={styles.calendar}>
+      <div className={styles.header}>
         <button onClick={handlePrevMonth}>&lt;</button>
         <div>
           {date.getFullYear()}年{monthNames[date.getMonth()]}
         </div>
         <button onClick={handleNextMonth}>&gt;</button>
       </div>
-      <div className="days">
-        <div className="day">日</div>
-        <div className="day">一</div>
-        <div className="day">二</div>
-        <div className="day">三</div>
-        <div className="day">四</div>
-        <div className="day">五</div>
-        <div className="day">六</div>
+      <div className={styles.days}>
+        <div className={styles.day}>日</div>
+        <div className={styles.day}>一</div>
+        <div className={styles.day}>二</div>
+        <div className={styles.day}>三</div>
+        <div className={styles.day}>四</div>
+        <div className={styles.day}>五</div>
+        <div className={styles.day}>六</div>
         {renderDays()}
       </div>
     </div>
