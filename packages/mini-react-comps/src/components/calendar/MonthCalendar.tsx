@@ -1,11 +1,25 @@
+import cx from "classnames"
+import { type FC, useContext } from "react"
 import styles from "./index.module.scss"
+import LocaleContext from "./LocaleContext"
+import allLocales from "./locale"
 import type { Dayjs } from "dayjs"
-import type { FC } from "react"
 import type { CalendarProps } from "."
 
-const weekList = ["周日", "周一", "周二", "周三", "周四", "周五", "周六"]
+const weekList = [
+  "sunday",
+  "monday",
+  "tuesday",
+  "wednesday",
+  "thursday",
+  "friday",
+  "saturday",
+]
 
-interface MonthCalendarProps extends CalendarProps {}
+interface MonthCalendarProps extends CalendarProps {
+  selectHandler?: (date: Dayjs) => void
+  curMonth: Dayjs
+}
 
 interface DaysInfo {
   date: Dayjs
@@ -39,7 +53,15 @@ const getAllDays = (date: Dayjs) => {
   return daysInfo
 }
 
-const renderDays = (days: DaysInfo[]) => {
+const renderDays = (
+  value: Dayjs,
+  dateRender: MonthCalendarProps["dateRender"],
+  dateInnerContent: MonthCalendarProps["dateInnerContent"],
+  selectHandler: MonthCalendarProps["selectHandler"],
+  curMonth: Dayjs,
+) => {
+  const days = getAllDays(curMonth)
+
   const rows = []
 
   for (let i = 0; i < 6; i++) {
@@ -50,9 +72,29 @@ const renderDays = (days: DaysInfo[]) => {
       row[j] = (
         <div
           key={item.date.format("YYYY-MM-DD")}
-          className={`${styles["calendar-month-body-cell"]}${item.currentMonth ? ` ${styles["calendar-month-body-cell-current"]}` : ""}`}
+          className={cx(styles["calendar-month-body-cell"], {
+            [styles["calendar-month-body-cell-current"]]: item.currentMonth,
+          })}
+          onClick={() => selectHandler?.(item.date)}
         >
-          {item.date.date()}
+          {dateRender ? (
+            dateRender(item.date)
+          ) : (
+            <div className={styles["calendar-month-body-cell-date"]}>
+              <div
+                className={cx(styles["calendar-month-cell-body-date-value"], {
+                  [styles["calendar-month-body-cell-date-selected"]]:
+                    value.format("YYYY-MM-DD") ===
+                    item.date.format("YYYY-MM-DD"),
+                })}
+              >
+                {item.date.date()}
+              </div>
+              <div className={styles["calendar-month-cell-body-date-content"]}>
+                {dateInnerContent?.(item.date)}
+              </div>
+            </div>
+          )}
         </div>
       )
     }
@@ -68,20 +110,29 @@ const renderDays = (days: DaysInfo[]) => {
 }
 
 const MonthCalendar: FC<MonthCalendarProps> = (props) => {
-  const { value } = props
+  const { value, dateRender, dateInnerContent, selectHandler, curMonth } = props
 
-  const allDays = getAllDays(value)
+  const localeContext = useContext(LocaleContext)
+  const CalendarLocale = allLocales[localeContext.locale]
 
   return (
     <div className={styles["calendar-month"]}>
       <div className={styles["calendar-month-week-list"]}>
         {weekList.map((week) => (
           <div key={week} className={styles["calendar-month-week-list-item"]}>
-            {week}
+            {CalendarLocale.week[week]}
           </div>
         ))}
       </div>
-      <div className={styles["calendar-month-body"]}>{renderDays(allDays)}</div>
+      <div className={styles["calendar-month-body"]}>
+        {renderDays(
+          value!,
+          dateRender,
+          dateInnerContent,
+          selectHandler,
+          curMonth,
+        )}
+      </div>
     </div>
   )
 }
