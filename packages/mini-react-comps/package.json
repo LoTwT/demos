@@ -1,0 +1,22 @@
+{
+  "name": "mini-react-comps",
+  "version": "0.0.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "tsc && vite build",
+    "dev": "vite",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.55",
+    "@types/react-dom": "^18.2.19",
+    "@vitejs/plugin-react-swc": "^3.5.0",
+    "typescript": "^5.2.2",
+    "vite": "^5.1.0"
+  }
+}
